@@ -12,6 +12,6 @@ jobs:
       - run: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
       - run: docker run --rm --privileged multiarch/qemu-user-static:latest --reset
       - run: echo ".git" > .dockerignore
-      - run: make prepare-old
-      - run: make build-push-all || make build-push
-      - run: make test || true
+      - run: make -j$(nproc --all) prepare-old
+      - run: make -j$(nproc --all) build-push-all || make -j$(nproc --all) build-push
+      - run: make -j$(nproc --all) test || true
