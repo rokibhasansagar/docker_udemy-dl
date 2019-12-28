@@ -13,5 +13,5 @@ jobs:
       - run: docker run --rm --privileged multiarch/qemu-user-static:latest --reset
       - run: echo ".git" > .dockerignore
       - run: make -j$(nproc --all) prepare-old
-      - run: make -j$(nproc --all) build-push-all || make -j$(nproc --all) build-push
-      - run: make -j$(nproc --all) test || true
+      - run: make -j$(nproc --all) build-push
+      - run: make -j$(nproc --all) test
