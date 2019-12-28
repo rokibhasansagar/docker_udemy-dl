@@ -1,0 +1,17 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: docker:stable
+    steps:
+      - checkout
+      - run: apk --update add make curl
+      - setup_remote_docker:
+          version: 18.09.3
+      - run: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+      - run: docker run --rm --privileged multiarch/qemu-user-static:latest --reset
+      - run: echo ".git" > .dockerignore
+      - run: make prepare-old
+      - run: make build-push-all || make build-push
+      - run: make test || true
