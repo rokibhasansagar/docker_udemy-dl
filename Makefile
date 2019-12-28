@@ -1,10 +1,6 @@
 BUILDX_VER=v0.3.0
 IMAGE_NAME=udemy-dl
 TAG?=latest
-
-BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%S%Z")
-VCS_REF=$(git rev-parse --short HEAD)
-VCS_URL=$(git remote get-url origin)
 VER='1.1'
 
 install:
@@ -23,18 +19,18 @@ prepare-old: install
 
 build-push:
 	docker buildx build --compress --no-cache --rm --force-rm --push \
-		--build-arg BUILD_DATE=${BUILD_DATE} \
-		--build-arg VCS_REF=${VCS_REF} \
-		--build-arg VCS_URL=${VCS_URL} \
+		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%S%Z"` \
+		--build-arg VCS_REF=`git rev-parse --short HEAD` \
+		--build-arg VCS_URL=`git remote get-url origin` \
 		--build-arg VERSION=${VER} \
 		--platform linux/amd64,linux/386 \
 		-t ${DOCKER_USERNAME}/${IMAGE_NAME}:${TAG} .
 
 build-push-all:
 	docker buildx build --compress --no-cache --rm --force-rm --push \
-		--build-arg BUILD_DATE=${BUILD_DATE} \
-		--build-arg VCS_REF=${VCS_REF} \
-		--build-arg VCS_URL=${VCS_URL} \
+		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%S%Z"` \
+		--build-arg VCS_REF=`git rev-parse --short HEAD` \
+		--build-arg VCS_URL=`git remote get-url origin` \
 		--build-arg VERSION=${VER} \
 		--platform linux/amd64,linux/386,linux/arm64/v8,linux/arm/v7,linux/arm/v6,linux/ppc64le,linux/s390x \
 		-t ${DOCKER_USERNAME}/${IMAGE_NAME}:${TAG} .
