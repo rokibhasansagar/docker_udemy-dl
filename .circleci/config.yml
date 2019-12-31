@@ -14,4 +14,4 @@ jobs:
       - run: echo ".git" > .dockerignore
       - run: make -j$(nproc --all) prepare-old
       - run: make -j$(nproc --all) build-push
-      - run: make -j$(nproc --all) test
+      - run: make -j$(nproc --all) test ping
