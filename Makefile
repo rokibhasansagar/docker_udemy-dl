@@ -37,3 +37,6 @@ build-push-all:
 
 test:
 	docker buildx imagetools inspect ${DOCKER_USERNAME}/${IMAGE_NAME}:${TAG}
+
+ping:
+	curl -X POST "https://hooks.microbadger.com/images/fr3akyphantom/udemy-dl/-iWYhKSpcpCCAtGre_aaXxtCCfc=" && echo ""
