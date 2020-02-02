@@ -15,3 +15,19 @@ jobs:
       - run: make -j$(nproc --all) prepare-old
       - run: make -j$(nproc --all) build-push
       - run: make -j$(nproc --all) test ping
+
+workflows:
+  version: 2
+  builder:
+    jobs:
+      - build
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - build
