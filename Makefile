@@ -1,4 +1,4 @@
-BUILDX_VER=v0.3.0
+BUILDX_VER=v0.3.1
 IMAGE_NAME=udemy-dl
 TAG?=latest
 VER='1.1'
@@ -9,12 +9,12 @@ install:
 	chmod a+x ~/.docker/cli-plugins/docker-buildx
 
 prepare: install
-	docker buildx create --use --platform linux/amd64,linux/386,linux/arm64/v8,linux/arm/v7,linux/arm/v6,linux/ppc64le,linux/s390x --driver docker-container
+	docker buildx create --use --platform linux/amd64,linux/386,linux/arm64/v8,linux/arm/v7,linux/arm/v6,linux/ppc64le,linux/s390x
 	docker buildx inspect --bootstrap
 
 prepare-old: install
 	docker context create old-style
-	docker buildx create old-style --use --platform linux/amd64,linux/386,linux/arm64/v8,linux/arm/v7,linux/arm/v6,linux/ppc64le,linux/s390x --driver docker-container
+	docker buildx create old-style --use --platform linux/amd64,linux/386,linux/arm64/v8,linux/arm/v7,linux/arm/v6,linux/ppc64le,linux/s390x
 	docker buildx inspect --bootstrap
 
 build-push:
