@@ -14,7 +14,7 @@ prepare: install
 
 prepare-old: install
 	docker context create old-style
-	docker buildx create old-style --use --platform linux/amd64,linux/386,linux/arm64/v8,linux/arm/v7,linux/arm/v6,linux/ppc64le,linux/s390x
+	docker buildx create old-style --use --platform linux/amd64,linux/386,linux/arm64/v8,linux/arm/v7,linux/arm/v6,linux/ppc64le,linux/s390x --driver docker-container
 	docker buildx inspect --bootstrap
 
 build-push:
