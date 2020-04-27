@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: docker:stable
+      - image: docker:stable-git
     steps:
       - checkout
       - run: apk --update add make curl
