@@ -23,7 +23,7 @@ build-push:
 		--build-arg VCS_REF=`git rev-parse --short HEAD` \
 		--build-arg VCS_URL=`git remote get-url origin` \
 		--build-arg VERSION=${VER} \
-		--platform linux/amd64,linux/386,linux/arm64/v8 \
+		--platform linux/amd64,linux/386 \
 		-t ${DOCKER_USERNAME}/${IMAGE_NAME}:${TAG} .
 
 build-push-all:
