@@ -1,4 +1,4 @@
-BUILDX_VER=v0.3.1
+BUILDX_VER=v0.4.1
 IMAGE_NAME=udemy-dl
 TAG?=latest
 VER='1.1'
@@ -23,7 +23,7 @@ build-push:
 		--build-arg VCS_REF=`git rev-parse --short HEAD` \
 		--build-arg VCS_URL=`git remote get-url origin` \
 		--build-arg VERSION=${VER} \
-		--platform linux/amd64,linux/386 \
+		--platform linux/amd64,linux/386,linux/arm64/v8 \
 		-t ${DOCKER_USERNAME}/${IMAGE_NAME}:${TAG} .
 
 build-push-all:
