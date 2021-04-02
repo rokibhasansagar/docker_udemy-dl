@@ -17,11 +17,13 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 
 LABEL maintainer="fr3akyphantom <rokibhasansagar2014@outlook.com>"
 
-RUN apk --update --no-cache add git curl build-base libffi-dev openssl-dev
+RUN apk --update --no-cache add git curl build-base libffi-dev openssl-dev cargo
 
 RUN git clone https://github.com/r0oth3x49/udemy-dl.git --depth 1
 
 RUN pip3 install -r /udemy-dl/requirements.txt
+
+RUN apk del cargo gcc g++
 
 RUN mkdir /downloads && chmod a+rw /downloads
 
